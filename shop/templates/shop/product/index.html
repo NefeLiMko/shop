@@ -1,0 +1,164 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}
+  {% if category %} {{ category.name }} {% else %} Страница товаров {% endif %}
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="col-lg-9">
+  <div class="slide--parent">
+	<div class="parent--el">
+		<div class="two--col">
+			<div class="is-item has--img">
+				<figure class="the-img">
+					<img src="https://8d9.ru/wp-content/uploads/2017/02/linux.jpg" alt="">
+				</figure>
+			</div>
+			<div class="is-item has--content">
+				<div class="is-item--inner">
+					<h1><span>Динамически - подгружаемые штуки</span></h1>
+					<hr>
+					<p>Тут типа динамически подгружается</p> <p> ценник можно выделить как-нибудь(например, цветом)</p> <p> и впринципе разбиваются красявости</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="parent--el">
+		<div class="two--col">
+			<div class="is-item has--img">
+				<figure class="the-img">
+					<img src="https://infuture.ru/images/f75968b0dffc6f430ed16721c4a10501.a232964828e360b7f7f2a26be5fb8fec.jpg" alt="" >
+				</figure>
+			</div>
+			<div class="is-item has--content">
+				<div class="is-item--inner">
+					<h1><span>Тарифные планы</span></h1>
+					<small>Можно небольшой лозунг</small>
+					<hr>
+					<p>А тут у нас, собественно, тарифные планы, разбитые на блоки(кормашки(позже уже разобьем как следует))</p>
+					<p></p>
+					<p></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+</div>
+
+
+<div class="col-lg-3 postimg" style="padding-left:0px;margin-left:-15px;">
+	{%for post in posts%}
+	<a href="/post/{{post.pk }}"><img  src="{{ post.image.url   }}" alt=""></a>
+	{%endfor%}
+		<a href="post_list/">
+		<button>
+			Все статьи
+		</button>
+	</a>	
+</div>
+</section>
+<section id="theme">
+	<div class="row" style="margin-left: auto;margin-right: auto;width: 30%;">
+		<h3>Тематические группы товаров</h3>
+	</div>	
+<div class="row">
+ <div class="col-lg-12">
+  	<div class="carousel" data-flickity='{ "groupCells": "56%" }'>	
+		{%for th in themes%}
+
+<div class="carousel-cell">
+
+					<img class="themeimg" src="{{th.image.url}}" alt="">	</div>
+
+{%endfor%}
+
+			
+		</div>
+
+	</div>
+</div>
+</section>
+<section id= "filter" >
+	<div class="row foo" style="margin-left: auto;margin-right: auto;width: 30%;">
+	
+		<button id="promo">
+			Акции
+		</button>
+		<button id="new">
+			Новое
+		</button>
+		<button id="hit">
+			Хиты продаж
+		</button>
+	</div>	
+	<div class="row new">
+		
+		{%for prod in products%}
+		
+			{%if prod.new == True%}
+			<div class="col-lg-3">
+			<a href="{{ prod.get_absolute_url }}"><img class="prodimg" src="{{prod.image.url}}" alt=""></a>
+			<div class="prod_name">
+				{{prod.name}} 
+				<br>{{prod.price}} руб
+			</div>
+			</div>
+			{%endif%}
+		
+		{%endfor%}
+		
+	</div>
+		<div class="row promo">
+
+		{%for prod in products%}
+			{%if prod.promo == True%}
+			<div class="col-lg-3">
+			<a href="{{ prod.get_absolute_url }}"><img class="prodimg" src="{{prod.image.url}}" alt=""></a>
+			<div class="prod_name">
+				{{prod.name}}
+				<br>{{prod.price}} руб
+			</div>
+			</div>	
+			{%endif%}
+		
+		{%endfor%}
+		
+	</div>
+		<div class="row hit">
+		
+		{%for prod in products%}
+		
+			{%if prod.hit == True%}
+			<div class="col-lg-3">
+			<a href="{{ prod.get_absolute_url }}"><img class="prodimg" src="{{prod.image.url}}" alt=""></a>
+			<div class="prod_name">
+				{{prod.name}}
+				<br>{{prod.price}} руб
+			</div>
+			</div>
+			{%endif%}
+		
+		{%endfor%}
+		
+	</div>
+</section>
+<section id="about">
+	<div class="row " >
+		<h3>ОТЗЫВЫ О НАС</h3></div>
+		<div class="about">
+		привет я текст отзыва<br>  мне нужно занимать какое-то место.<br> вот  копия 2
+		привет я текст отзыва.<br>  мне нужно занимать какое-то место.<br> вот  копия 2
+		привет я текст отзыва.<br>  мне нужно занимать какое-то место.<br> вот  копия 2
+		привет я текст отзыва.<br>  мне нужно занимать какое-то место.<br><br> вот  копия 2
+		привет я текст отзыва.<br>  мне нужно занимать какое-то место.<br> вот  копия 2
+	</div>
+</section>
+</div>
+
+{% endblock %}

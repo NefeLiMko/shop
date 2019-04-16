@@ -1,21 +1,77 @@
-{% load static %}
+
+
+
+  {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>{% block title %}{% endblock %}</title>
-
   <!-- Styles -->
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700" rel="stylesheet">
+  
+  <link rel='stylesheet prefetch' href='https://unpkg.com/flickity@2/dist/flickity.min.css'>
+
   <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
   <link rel="stylesheet" href="{% static "css/style.css" %}">
 </head>
 <body>
-  <section id="header">
-    <div class="top container">
-      Мой Онлайн-Магазин
+  <div class="container">
+  <section id="header">  
+    <div class="row">
+      <div class="col-lg-7">
+      <nav class="about">
+          <ul>
+            <li>
+              <a href="#">
+                Адреса
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Доставка
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Оплата
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Для оптовых покупателей
+              </a>
+            </li>
+            </ul>
+            </div>
+            <div class="col-lg-2 col-lg-offset-3 about">
+            <ul>
+            <li>
+              <a href="#" >
+                Вход
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Регистрация
+              </a>
+            </li>
+            </div>
+          </ul>
+      </nav>
     </div>
-    <div class="top-bl">
-      <div class="container">
+    <div class="row">
+      <div class="col-lg-2">
+        <div class="search" style="background: #eaeaea">
+            Poisk
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <a href="/">
+          <img class="logo" src="{% static "img/logo.jpg" %}">
+        </a>
+      </div>
+      <div class="col-lg-2">
         <div class="cart">
           {% with total_items=cart|length %}
             {% if cart|length > 0 %}
@@ -30,9 +86,84 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="menu">
+        <ul>
+          <li>
+            <a href="">Развитие и творчество</a>
+            
+          </li>
+          <li>
+            <a href=""> игрушки</a>
+          </li>
+          <li>
+            <a href="">одежда</a>
+          </li>
+          <li>
+            <a href="">обувь</a>
+          </li>
+          <li>
+            <a href="">сезонный раздел</a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </section>
   <section id="content row" class="container">
     {% block content %}{% endblock %}
+
+  <section id="footer" class="container">
+    <div class="row">
+      <div class="col-lg-2">
+         <div class="FootSpan">Покупателям</div>
+        <ul>
+          <li><a href="">Как сделать заказ </a></li>
+          <li><a href="">правила продажи</a></li>
+          <li><a href="">доставка</a></li>
+          <li><a href="">оплата</a></li>
+          <li><a href="">возврат</a></li>
+          <li><a href="">вопросы и ответы</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+                 <div class="FootSpan FootSpan3">Ваши возможности</div>
+        <ul>
+          <li><a href="">бонусная программа </a></li>
+          <li><a href="">подарочная карта</a></li>
+          <li><a href="">акции</a></li>
+          </ul>
+      </div>
+      <div class="col-lg-3">
+                 <div class="FootSpan FootSpan3">Компания</div>
+        <ul>
+          <li><a href="">Рекламодателям </a></li>
+          <li><a href="">поставщикам</a></li>
+          <li><a href="">наши друзья</a></li>
+          <li><a href="">вакансии</a></li>
+          <li><a href="">контакты</a></li>
+          <li><a href="">о нас</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4" style="padding-right: 0px">
+                 <div class="FootSpan">интернет-магазин</div>
+        <ul>
+          <li>телефоны </li>
+          <li>+375 (29) 323 14 14 +375 (33) 323 14 14</li>
+          <li>+375 (17) 259 64 71 +375 (17) 259 64 72</li>
+          <li>время работы</li>
+          <li>с 9.30 до 20.00</li>
+          <li style="margin-bottom: 15px;">(без выходных)</li>
+          <li>принимаем к оплате:</li>
+          <li>visa mastercard assist pci dss белкарт</li>
+        </ul>
+        <!--<img class="logo" src="{% static "img/" %}">-->
+      </div>
+    </div>
   </section>
+  </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src='https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js'></script>
+    <script  src="{% static "js/index.js" %}"></script>
+    <script  src="{% static "js/filt.js" %}"></script>
 </body>
 </html>

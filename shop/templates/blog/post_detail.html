@@ -1,0 +1,16 @@
+{% extends 'shop/base.html' %} {% block content %}
+<div class="post">
+	{% if post.image %}
+	<div class="post-ic">
+		<img src="{{post.image.url}}" alt="">
+	</div>
+	{%endif%}
+    {% if post.published_date %}
+    <div class="date">
+        {{ post.published_date }}
+    </div>
+    {% endif %} 
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.text|linebreaksbr }}</p>
+</div>
+{% endblock %}

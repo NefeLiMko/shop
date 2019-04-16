@@ -5,31 +5,55 @@
 {% endblock %}
 
 {% block content %}
-  <h1>Оформление заказа</h1>
-  <div class="col-sm-4">
-    <h2>Заполните форму</h2>
+<div class="row road" xmlns="http://www.w3.org/1999/html">
+  <div class="col-lg-12">
+    <a href="">Главная</a> /
+    <a href="">Мой аккаунт</a> /
+    <a href="">Корзина</a> /
+     <a href="">Оформление заказа</a>
+  </div>
+</div>
+<p class="order_create">Оформление заказа</p>
+<div class="yellow_block">
+  <p> Обратите внимание! Интернет-заказы обрабатываются с 10 <sup>00</sup> до
+    20 <sup >00</sup>. Заказы, сделанные в нерабочее время, обрабатываются с 10 <sup>00</sup>
+  следующего дня</p>
+</div>
+<div class="row" style="font-size:28px"><div class="col-lg-4">Выбранные товары</div></div>
+{% for item in cart %}
+        {% with product=item.product %}
+<div class="row order-item">
+  <div class="col-lg-1" ">
+              <a href="{{ product.get_absolute_url }}">
+                <img src="{{ product.image.url }}" class="cart-img" />
+              </a>
+              </div>
+            <div class="col-lg-2"><h3>{{ product.name }}</h3></div>
+            <div class="col-lg-2"><h3>{{ product.slug}}</h3></div>
+            <div class="col-lg-2">
+              {{item.quantity}} шт.
+
+
+            </div>
+            <div class="col-lg-2">{{ item.price }} руб.</div>
+
+
+</div>
+        {%endwith%}
+{%endfor%}
+  <div class="row">
+    <h2>Ваши данные</h2>
     <form class="order-form" action="." method="post">
-      {{ form.as_p }}
+            <ul>
+      {{ form.as_ul }}
+                </ul>
+
       {% csrf_token %}
+
       <input type="submit" value="Отправить">
     </form>
   </div>
 
-  <div class="order-info col-sm-8">
-    <h2>Ваш заказ</h2>
-    <ul>
-      {% for item in cart  %}
-        <li>
-          {{ item.product.name }} | Количество: {{ item.quantity }} | Цена: {{ item.total_price }}
-        </li>
-      {% endfor %}
-      {% if cart.cupon %}
-        <li>
-          "{{ cart.cupon.code }}" (на {{ cart.cupon.discount }}% меньше)
-          <span> - {{ cart.get_discount|floatformat:"2"}} руб.</span>
-        </li>
-      {% endif %}
-    </ul>
-    <p><strong>Всего:</strong> {{ cart.get_total_price_after_discount|floatformat:"2"}} руб.</p>
-  </div>
+
+</section>
 {% endblock %}

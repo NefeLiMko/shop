@@ -44,7 +44,7 @@ def OrderCreate(request):
             cart.clear()
 
             # Асинхронная отправка сообщения
-            OrderCreated.delay(order.id)
+            OrderCreated(order.id)
             request.session['order_id'] = order.id
             return redirect(reverse('payment:process'))
 
